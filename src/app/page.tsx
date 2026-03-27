@@ -27,7 +27,7 @@ export default function Home() {
   const fetchStoredIngredients = async () => {
     const result = await getIngredients();
     if (result.success && result.items) {
-      setIngredients(result.items);
+      setIngredients(result.items as string[]);
     }
   };
 
