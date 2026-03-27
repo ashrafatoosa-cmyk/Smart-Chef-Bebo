@@ -1,26 +1,102 @@
 @import "tailwindcss";
 
+@theme {
+  --font-acme: var(--font-acme);
+  --font-slogan: var(--font-slogan);
+  --color-sage-light: #A4C6A8;
+  --color-sage: #87A96B;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #000000;
+  --foreground: #FFFFFF;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  font-size: 20px;
 }
 
 body {
-  background: var(--background);
+  background-color: #000000;
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-acme), sans-serif;
+  overflow-x: hidden;
+}
+
+/* Pro-Dark Glassmorphism */
+.glass-dark {
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(164, 198, 168, 0.2);
+  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.7);
+}
+
+/* Floating Food Animation */
+@keyframes float {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+
+  33% {
+    transform: translate(100px, 100px) rotate(120deg);
+  }
+
+  66% {
+    transform: translate(-50px, 200px) rotate(240deg);
+  }
+
+  100% {
+    transform: translate(0, 0) rotate(360deg);
+  }
+}
+
+.food-particle {
+  position: absolute;
+  font-size: 4rem;
+  opacity: 0.6;
+  z-index: 1;
+  pointer-events: none;
+  animation: float 25s infinite linear;
+}
+
+/* Scanning Shimmer Animation */
+@keyframes shimmer {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+.scanner-shimmer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom,
+      transparent 0%,
+      rgba(164, 198, 168, 0.3) 50%,
+      transparent 100%);
+  animation: shimmer 2s infinite linear;
+  pointer-events: none;
+}
+
+/* High Contrast Visibility */
+.z-foreground {
+  position: relative;
+  z-index: 10;
+}
+
+.font-slogan {
+  font-family: var(--font-slogan), cursive;
 }
